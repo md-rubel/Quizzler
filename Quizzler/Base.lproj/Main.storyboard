@@ -48,6 +48,9 @@
                                     <constraint firstAttribute="height" constant="40" id="fUW-FK-5xS"/>
                                 </constraints>
                                 <state key="normal" title="TRUE"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wGz-Yc-k9E"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJ8-Zn-g97" customClass="ButtonStyle" customModule="Quizzler" customModuleProvider="target">
                                 <rect key="frame" x="30" y="578" width="354" height="40"/>
@@ -55,6 +58,9 @@
                                     <constraint firstAttribute="height" constant="40" id="Ara-L7-7C5"/>
                                 </constraints>
                                 <state key="normal" title="FALSE"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PU6-xm-1UV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="ETr-WE-cfo">
                                 <rect key="frame" x="20" y="64" width="374" height="434"/>
@@ -86,6 +92,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="progressBar" destination="HCu-zv-GcO" id="zXh-uJ-umo"/>
+                        <outlet property="progressLabel" destination="KQh-Ur-3fP" id="LMJ-iY-Csg"/>
+                        <outlet property="questionLabel" destination="ETr-WE-cfo" id="Iw7-rw-Df6"/>
+                        <outlet property="scoreLabel" destination="8Bp-px-Cv5" id="ACP-ja-RfR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
