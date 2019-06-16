@@ -93,8 +93,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="progressBar" destination="HCu-zv-GcO" id="zXh-uJ-umo"/>
                         <outlet property="progressLabel" destination="KQh-Ur-3fP" id="LMJ-iY-Csg"/>
+                        <outlet property="progressView" destination="HCu-zv-GcO" id="zXh-uJ-umo"/>
                         <outlet property="questionLabel" destination="ETr-WE-cfo" id="Iw7-rw-Df6"/>
                         <outlet property="scoreLabel" destination="8Bp-px-Cv5" id="ACP-ja-RfR"/>
                     </connections>

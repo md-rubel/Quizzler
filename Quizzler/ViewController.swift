@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
 //         Do any additional setup after loading the view.
         setBackground()
         
-        nextQuestion()
+        updateUI()
     }
     
 //    MARK: Set Background Image
@@ -52,25 +52,27 @@ class ViewController: UIViewController {
         }
         
         checkAnswer()
+        
         questionNumber += 1
-        nextQuestion()
+        
+        updateUI()
         
     }
     
     func updateUI() {
         
+        progressView.setProgress((Float(questionNumber) / 13.0), animated: true)
+        
         scoreLabel.text = "Score: \(score)"
-        progressLabel.text = "\(questionNumber + 1)/13"
+        progressLabel.text = "\(questionNumber)/13"
         
-        progressBar.frame.size.width = (view.frame.size.width / 13) * CGFloat(questionNumber + 1)
-        
+        nextQuestion()
     }
     
     func nextQuestion() {
         
         if questionNumber <= 12 {
             questionLabel.text = allQuestions.list[questionNumber].questionText
-            updateUI()
         }
             
         else {
@@ -97,20 +99,23 @@ class ViewController: UIViewController {
         let correctAnswer = allQuestions.list[questionNumber].answer
         
         if correctAnswer == pickedAnswer {
-            print("You've got it")
+            ProgressHUD.showSuccess("Correct")
             score += 1
-            updateUI()
         }
         else {
-            print("Wrong!")
+            ProgressHUD.showError("Wrong!")
         }
         
     }
     
     func startOver() {
+        
         questionNumber = 0
         score = 0
-        nextQuestion()
+        
+        progressView.setProgress(0.0, animated: true)
+        
+        updateUI()
     }
     
 }
