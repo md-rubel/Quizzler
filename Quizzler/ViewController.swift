@@ -82,9 +82,8 @@ class ViewController: UIViewController {
                 self.startOver()
             }
             
-//            TODO: eikhane app exit korar function add korte hobe
             let quitApp = UIAlertAction(title: "Exit", style: .default) { (UIAlertAction) in
-                self.startOver()
+                exit(0)
             }
             
             alart.addAction(quitApp)
