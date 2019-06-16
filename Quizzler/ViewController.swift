@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     let allQuestions = QuestionBank()
     var pickedAnswer: Bool = false
     var questionNumber: Int = 0
+    var score: Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -25,8 +26,7 @@ class ViewController: UIViewController {
 //         Do any additional setup after loading the view.
         setBackground()
         
-        let firstQuestion = allQuestions.list[0]
-        questionLabel.text = firstQuestion.questionText
+        nextQuestion()
     }
     
 //    MARK: Set Background Image
@@ -52,24 +52,65 @@ class ViewController: UIViewController {
         }
         
         checkAnswer()
-        
+        questionNumber += 1
+        nextQuestion()
         
     }
     
     func updateUI() {
         
+        scoreLabel.text = "Score: \(score)"
+        progressLabel.text = "\(questionNumber + 1)/13"
+        
+        progressBar.frame.size.width = (view.frame.size.width / 13) * CGFloat(questionNumber + 1)
+        
     }
     
     func nextQuestion() {
+        
+        if questionNumber <= 12 {
+            questionLabel.text = allQuestions.list[questionNumber].questionText
+            updateUI()
+        }
+            
+        else {
+            let alart = UIAlertController(title: "Awesome", message: "You've finished all the questions, do you want to start over?", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction(title: "Restart", style: .default) { (UIAlertAction) in
+                self.startOver()
+            }
+            
+//            TODO: eikhane app exit korar function add korte hobe
+            let quitApp = UIAlertAction(title: "Exit", style: .default) { (UIAlertAction) in
+                self.startOver()
+            }
+            
+            alart.addAction(quitApp)
+            alart.addAction(restartAction)
+            present(alart, animated: true, completion: nil)
+        }
         
     }
     
     func checkAnswer() {
         
+        let correctAnswer = allQuestions.list[questionNumber].answer
+        
+        if correctAnswer == pickedAnswer {
+            print("You've got it")
+            score += 1
+            updateUI()
+        }
+        else {
+            print("Wrong!")
+        }
+        
     }
     
     func startOver() {
-        
+        questionNumber = 0
+        score = 0
+        nextQuestion()
     }
     
 }
